@@ -1,5 +1,9 @@
 "for installing plugins easily
-execute pathogen#infect()
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 filetype plugin indent on
 
 "basic formatting / display options
@@ -28,6 +32,7 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'janko-m/vim-test'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -47,9 +52,11 @@ Plug 'sickill/vim-pasta'
 " language specific plugins
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+let test#python#runner = 'pytest'
 
 call plug#end()
 
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GUI Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,5 +169,5 @@ if executable('ag')
 endif
 
 " colorschemes
-colorscheme peachpuff
+colorscheme apprentice
 
