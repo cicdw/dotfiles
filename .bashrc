@@ -1,8 +1,9 @@
 # visual customization
 ## important aliases
+alias k='kubectl'
 alias ll='ls -alG'
 alias on='source activate'
-alias off='source deactivate'
+alias off='conda deactivate'
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 ssbt() {
@@ -33,7 +34,7 @@ parse_conda_env() {
 }
 
 function code_find() {
-  find . -name "*.py" -exec grep -Hin --color=always $1 {} \;
+  find . -name $1 -exec grep -Hin --color=always $2 {} \;
 }
 
 export PS1='\[\033[0;36m\]\u$(parse_conda_env)\[\033[0m\] in \[\033[1;31m\]$(pwd)\[\033[0m\]\[\033[0;32m\]$(parse_git_branch)\n\[\033[1;33m\][\$\$] \[\033[0m\]'
